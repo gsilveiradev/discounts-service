@@ -19,4 +19,10 @@ return function (App $app) {
         $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
         return $logger;
     };
+
+    // predis client
+    $container['redis'] = function ($c) {
+        $settings = $c->get('settings')['redis'];
+        return new Predis\Client($settings);
+    };
 };
