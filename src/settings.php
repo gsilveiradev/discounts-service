@@ -22,5 +22,8 @@ return [
             'host'   => 'redis',
             'port'   => 6379,
         ],
+
+        // GuzzleHttp settings
+        'guzzle' => [],
     ],
 ];

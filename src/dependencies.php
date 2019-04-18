@@ -25,4 +25,10 @@ return function (App $app) {
         $settings = $c->get('settings')['redis'];
         return new Predis\Client($settings);
     };
+
+    // GuzzleHttp client
+    $container['guzzle'] = function ($c) {
+        $settings = $c->get('settings')['guzzle'];
+        return new GuzzleHttp\Client();
+    };
 };
