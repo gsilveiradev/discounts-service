@@ -1,27 +1,18 @@
-# Slim Framework 3 Skeleton Application
+# Discounts Service Application
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This is a service to apply discounts rules to a sample of orders
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+## Running
 
-## Install the Application
+I choose to use Docker to serve the environment needed by the service. In this case, I am using [PHPDocker.io](https://github.com/guissilveira/discounts-service/tree/master/phpdocker).
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Command|What it does?
+-----------|---------
+php composer.phar start|Start the containers and run the application
+php composer.phar stop|Stop the containers
+php composer.phar test|Run the test suite
+php composer.phar psr2|Check the PSR2 coding styles
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+The aplication is served at: [localhost:8080](http://localhost:8080)
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can run these commands 
-
-	cd [my-app-name]
-	php composer.phar start
-
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+That's it! I hope you enjoy it.
