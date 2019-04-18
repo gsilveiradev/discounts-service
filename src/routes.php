@@ -19,8 +19,12 @@ return function (App $app) {
 
         $products = new ProductRepository($guzzleClient, $redisClient);
         $container->get('logger')->info("Discounts Service '/' Products: ".json_encode($products->getAll()));
-        $container->get('logger')->info("Discounts Service '/' Product (B101): ".json_encode($products->findById('B101')));
-        $container->get('logger')->info("Discounts Service '/' Product by Category (2): ".json_encode($products->findByCategoryId(2)));
+        $container->get('logger')->info(
+            "Discounts Service '/' Product (B101): ".json_encode($products->findById('B101'))
+        );
+        $container->get('logger')->info(
+            "Discounts Service '/' Product by Category (2): ".json_encode($products->findByCategoryId(2))
+        );
 
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
