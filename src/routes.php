@@ -3,23 +3,18 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use DiscountsService\Customers\Repository\CustomerRepository;
 
 return function (App $app) {
     $container = $app->getContainer();
 
     $app->get('/[{name}]', function (Request $request, Response $response, array $args) use ($container) {
-        // Sample log message
-        $container->get('logger')->info("Slim-Skeleton '/' route");
-
-        // Sample Redis test
         $redisClient = $container->get('redis');
-        
-        if (!$redisClient->get('foo')) {
-            $redisClient->set('foo', date('m/d/Y H:i:s'));
-            $redisClient->expire('foo', 20); // Expire the key every 20 seconds
-        }
-        
-        $container->get('logger')->info("Discounts Service '/' Redis: ".$redisClient->get('foo'));
+        $guzzleClient = $container->get('guzzle');
+
+        $customers = new CustomerRepository($guzzleClient, $redisClient);
+        $container->get('logger')->info("Discounts Service '/' Customers: ".json_encode($customers->getAll()));
+        $container->get('logger')->info("Discounts Service '/' Customers: ".json_encode($customers->findById(2)));
 
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
