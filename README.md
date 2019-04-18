@@ -1,17 +1,23 @@
 # Discounts Service Application
 
-This is a service to apply discounts rules to a sample of orders
+This is a simple service to apply discount rules to a sample of orders.
+It uses [Slim Framework](http://www.slimframework.com/), php7.2, nginx and redis.
+
+## Install
+
+First clone the repo: `git clone https://github.com/guissilveira/discounts-service.git`
+Then, run the composer install: `php composer.phar install`
 
 ## Running
 
-I choose to use Docker to serve the environment needed by the service. In this case, I am using [PHPDocker.io](https://github.com/guissilveira/discounts-service/tree/master/phpdocker).
+The service uses Docker to serve the environment. In this case, the [PHPDocker.io](https://github.com/guissilveira/discounts-service/tree/master/phpdocker) was used as a easy way to dockerize the environment.
 
 Command|What it does?
 -----------|---------
-php composer.phar start|Start the containers and run the application
-php composer.phar stop|Stop the containers
-php composer.phar test|Run the test suite
-php composer.phar psr2|Check the PSR2 coding styles
+`php composer.phar start`|Start the containers and run the application
+`php composer.phar stop`|Stop the containers
+`php composer.phar test`|Run the test suite
+`php composer.phar psr2`|Check the PSR2 coding styles
 
 The aplication is served at: [localhost:8080](http://localhost:8080)
 
