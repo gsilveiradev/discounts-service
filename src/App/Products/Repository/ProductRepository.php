@@ -1,6 +1,6 @@
 <?php
 
-namespace DiscountsService\Products\Repository;
+namespace DiscountsService\App\Products\Repository;
 
 use DiscountsService\Framework\Repository;
 

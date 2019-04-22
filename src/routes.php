@@ -3,8 +3,8 @@
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use DiscountsService\Customers\Repository\CustomerRepository;
-use DiscountsService\Products\Repository\ProductRepository;
+use DiscountsService\App\Customers\Repository\CustomerRepository;
+use DiscountsService\App\Products\Repository\ProductRepository;
 
 return function (App $app) {
     $container = $app->getContainer();
