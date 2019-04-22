@@ -2,13 +2,13 @@
 
 namespace DiscountsService\Customers\Repository;
 
-use DiscountsService\App\Repository;
+use DiscountsService\Framework\Repository;
 
 class CustomerRepository extends Repository
 {
     protected $cachePrefix = 'customers:';
 
-    public function getAll(): array
+    public function getAll(): ?array
     {
         $cacheKey = $this->cachePrefix.'all';
 

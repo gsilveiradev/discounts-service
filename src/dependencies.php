@@ -1,6 +1,7 @@
 <?php
 
 use Slim\App;
+use DiscountsService\Framework\Cache\Adapter\RedisAdapter;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -20,10 +21,11 @@ return function (App $app) {
         return $logger;
     };
 
-    // predis client
-    $container['redis'] = function ($c) {
+    // cache client
+    $container['cache'] = function ($c) {
         $settings = $c->get('settings')['redis'];
-        return new Predis\Client($settings);
+        $redisClient = new Predis\Client($settings);
+        return new RedisAdapter($redisClient, []);
     };
 
     // GuzzleHttp client
