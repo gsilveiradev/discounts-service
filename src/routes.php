@@ -5,7 +5,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use DiscountsService\App\Customers\Repository\CustomerRepository;
 use DiscountsService\App\Products\Repository\ProductRepository;
-use DiscountsService\App\Orders\Validation\ArrayValidation;
+use DiscountsService\App\Orders\Controller\OrdersController;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -32,13 +32,7 @@ return function (App $app) {
     });
 
     $app->post('/', function (Request $request, Response $response, array $args) use ($container) {
-        $order = $request->getParsedBody();
-
-        if ((new ArrayValidation())->isValid($order)) {
-            // calculate the discounts
-            return $response->withJson($order);
-        }
-
-        return $response->withJson(['error' => 'The order is invalid!'], 422);
+        $controller = new OrdersController($request, $response, $container);
+        return $controller->index();
     });
 };
