@@ -25,7 +25,7 @@ return function (App $app) {
     $container['cache'] = function ($c) {
         $settings = $c->get('settings')['redis'];
         $redisClient = new Predis\Client($settings);
-        return new RedisAdapter($redisClient, []);
+        return new RedisAdapter($redisClient);
     };
 
     // GuzzleHttp client
