@@ -8,12 +8,10 @@ use DiscountsService\Framework\Cache\CacheProviderInterface;
 class RedisAdapter implements CacheProviderInterface
 {
     protected $client;
-    protected $settings;
 
-    public function __construct(Client $client, array $settings)
+    public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->settings = $settings;
     }
 
     public function setValue(string $key, string $data)
