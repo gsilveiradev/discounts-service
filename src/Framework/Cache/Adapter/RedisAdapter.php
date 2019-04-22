@@ -2,7 +2,7 @@
 
 namespace DiscountsService\Framework\Cache\Adapter;
 
-use \Predis\Client;
+use Predis\Client;
 use DiscountsService\Framework\Cache\CacheProviderInterface;
 
 class RedisAdapter implements CacheProviderInterface
