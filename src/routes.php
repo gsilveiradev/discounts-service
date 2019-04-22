@@ -33,6 +33,6 @@ return function (App $app) {
 
     $app->post('/', function (Request $request, Response $response, array $args) use ($container) {
         $controller = new OrdersController($request, $response, $container);
-        return $controller->index();
+        return $controller->indexPost();
     });
 };

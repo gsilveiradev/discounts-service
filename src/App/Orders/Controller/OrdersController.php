@@ -20,7 +20,7 @@ class OrdersController
         $this->container = $container;
     }
 
-    public function index()
+    public function indexPost()
     {
         $order = $this->request->getParsedBody();
 

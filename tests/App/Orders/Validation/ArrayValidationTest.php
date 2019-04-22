@@ -21,7 +21,12 @@ class ArrayValidationTest extends \PHPUnit\Framework\TestCase
             'id' => '',
             'customer-id' => '',
             'items' => [
-                ['product-id' => 'A101']
+                [
+                    'product-id' => '',
+                    'quantity' => '',
+                    'unit-price' => '',
+                    'total' => ''
+                ]
             ],
             'total' => '',
         ];
