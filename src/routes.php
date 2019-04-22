@@ -5,6 +5,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use DiscountsService\App\Customers\Repository\CustomerRepository;
 use DiscountsService\App\Products\Repository\ProductRepository;
+use DiscountsService\App\Orders\Controller\OrdersController;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -28,5 +29,10 @@ return function (App $app) {
 
         // Render index view
         return $container->get('renderer')->render($response, 'index.phtml', $args);
+    });
+
+    $app->post('/', function (Request $request, Response $response, array $args) use ($container) {
+        $controller = new OrdersController($request, $response, $container);
+        return $controller->indexPost();
     });
 };
