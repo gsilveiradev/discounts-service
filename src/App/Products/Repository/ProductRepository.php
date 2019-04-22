@@ -1,14 +1,18 @@
 <?php
 
-namespace DiscountsService\Products\Repository;
+namespace DiscountsService\App\Products\Repository;
 
-use DiscountsService\App\Repository;
+use DiscountsService\Framework\Repository;
 
 class ProductRepository extends Repository
 {
     protected $cachePrefix = 'products:';
 
-    public function getAll(): array
+    /**
+     * Return all products using cache layer
+     * @return null|array
+     */
+    public function getAll(): ?array
     {
         $cacheKey = $this->cachePrefix.'all';
 
@@ -27,6 +31,10 @@ class ProductRepository extends Repository
         return $this->getCachedResult($cacheKey);
     }
 
+    /**
+     * Return one product filtering by ID
+     * @return null|array
+     */
     public function findById(string $id): ?array
     {
         $cacheKey = $this->cachePrefix.$id;
@@ -49,6 +57,10 @@ class ProductRepository extends Repository
         return null;
     }
 
+    /**
+     * Return products filtering by CategoryID
+     * @return null|array
+     */
     public function findByCategoryId(int $id): ?array
     {
         $cacheKey = $this->cachePrefix.'category:'.$id;
