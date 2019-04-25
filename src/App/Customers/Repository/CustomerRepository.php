@@ -49,7 +49,7 @@ class CustomerRepository extends Repository
         });
 
         if (!empty($found)) {
-            $this->setCachedResult($cacheKey, json_encode($found));
+            $this->setCachedResult($cacheKey, json_encode(reset($found)));
 
             return $this->getCachedResult($cacheKey);
         }
