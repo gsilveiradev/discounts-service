@@ -11,7 +11,7 @@ class Calculation implements CalculationInterface
         $this->rule = $rule;
     }
 
-    public function getDiscount(array $order)
+    public function getDiscount(array $order): float
     {
         return $this->rule->getDiscount($order);
     }
