@@ -25,11 +25,12 @@ class SwitchesCategory implements CalculationInterface
             $product = $this->productsRepository->findById($item['product-id']);
 
             if (!empty($product) && $product['category'] == self::SWITCHES_CATEGORY_ID) {
-                if ($item['quantity'] > self::MIN_QUANTITY_REQUIRED) {
+                if (intval($item['quantity']) > self::MIN_QUANTITY_REQUIRED) {
                     $discount = floatval($product['price']);
                 }
             }
         }
+        
         return $discount;
     }
 }

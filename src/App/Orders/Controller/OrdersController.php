@@ -38,11 +38,19 @@ class OrdersController
 
             $totalDiscount = 0.00;
 
+            // Apply discounts for Switches category rule
             $discountsCalculation = new Calculation(new Rules\SwitchesCategory($products));
             $discount = $discountsCalculation->getDiscount($order);
             $totalDiscount += $discount;
             $order['total'] = number_format(floatval($order['total']) - $discount, 2, '.', '');
 
+            // Apply discounts for Tools category rule
+            $discountsCalculation = new Calculation(new Rules\ToolsCategory($products));
+            $discount = $discountsCalculation->getDiscount($order);
+            $totalDiscount += $discount;
+            $order['total'] = number_format(floatval($order['total']) - $discount, 2, '.', '');
+
+            // Apply discounts for user total revenue rule
             $discountsCalculation = new Calculation(new Rules\UserTotalRevenue($customers));
             $discount = $discountsCalculation->getDiscount($order);
             $totalDiscount += $discount;
