@@ -14,16 +14,16 @@ class UserTotalRevenue implements CalculationInterface
         $this->customersRepository = $customersRepository;
     }
     
-    public function getDiscount(array $order)
+    public function getDiscount(array $order): float
     {
         $customer = $this->customersRepository->findById($order['customer-id']);
 
         if (!empty($customer)) {
             if (floatval($customer['revenue']) > 1000) {
-                return (string) ($order['subtotal'] * 0.10);
+                return floatval($order['total']) * 0.10;
             }
         }
 
-        return "0.00";
+        return 0.00;
     }
 }

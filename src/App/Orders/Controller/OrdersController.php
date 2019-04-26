@@ -9,6 +9,7 @@ use DiscountsService\App\Orders\Validation\ArrayValidation;
 use DiscountsService\App\Discounts\Calculation;
 use DiscountsService\App\Discounts\Rules;
 use DiscountsService\App\Customers\Repository\CustomerRepository;
+use DiscountsService\App\Products\Repository\ProductRepository;
 
 class OrdersController
 {
@@ -33,13 +34,23 @@ class OrdersController
             $guzzleClient = $this->container->get('guzzle');
 
             $customers = new CustomerRepository($guzzleClient, $cacheClient);
+            $products = new ProductRepository($guzzleClient, $cacheClient);
+
+            $totalDiscount = 0.00;
+
+            $discountsCalculation = new Calculation(new Rules\SwitchesCategory($products));
+            $discount = $discountsCalculation->getDiscount($order);
+            $totalDiscount += $discount;
+            $order['total'] = number_format(floatval($order['total']) - $discount, 2, '.', '');
 
             $discountsCalculation = new Calculation(new Rules\UserTotalRevenue($customers));
             $discount = $discountsCalculation->getDiscount($order);
-
-            $order['total'] = (string) (floatval($order['total']) - floatval($discount));
+            $totalDiscount += $discount;
+            $order['total'] = number_format(floatval($order['total']) - $discount, 2, '.', '');
             
-            return $this->response->withJson(array_merge($order, ['discount' => $discount]));
+            $order['discount'] = number_format($totalDiscount, '2', '.', '');
+
+            return $this->response->withJson($order);
         }
 
         return $this->response->withJson(['error' => 'The order is invalid!'], 422);
