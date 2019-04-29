@@ -2,6 +2,9 @@
 
 use Slim\App;
 use DiscountsService\Framework\Cache\Adapter\RedisAdapter;
+use DiscountsService\App\Orders\Service\OrderDiscountsCalculator;
+use DiscountsService\App\Customers\Repository\CustomerRepository;
+use DiscountsService\App\Products\Repository\ProductRepository;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -32,5 +35,13 @@ return function (App $app) {
     $container['guzzle'] = function ($c) {
         $settings = $c->get('settings')['guzzle'];
         return new GuzzleHttp\Client();
+    };
+
+    // OrderDiscountsCalculator service
+    $container['discountsCalculator'] = function ($c) {
+        $customers = new CustomerRepository($c['guzzle'], $c['cache']);
+        $products = new ProductRepository($c['guzzle'], $c['cache']);
+
+        return new OrderDiscountsCalculator($customers, $products);
     };
 };
