@@ -11,5 +11,6 @@ before_script:
   - composer install
 
 script:
+  - composer start
   - composer test
   - composer psr2
