@@ -1,4 +1,4 @@
-# Discounts Service Application
+# Discounts Service Application [![Build Status](https://travis-ci.com/guissilveira/discounts-service.svg?branch=master)](https://travis-ci.com/guissilveira/discounts-service)
 
 This is a simple service to apply discount rules to a sample of orders.
 It uses [Slim Framework](http://www.slimframework.com/), php7.2, nginx and redis.
