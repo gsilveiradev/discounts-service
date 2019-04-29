@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 7.2
+
+branches:
+  only:
+    - master
+
+before_script:
+  - composer install
+
+script:
+  - composer test
+  - composer psr2
