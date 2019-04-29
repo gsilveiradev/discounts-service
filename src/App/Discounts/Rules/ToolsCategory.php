@@ -42,7 +42,7 @@ class ToolsCategory implements CalculationInterface
         }
 
         if ($cheapestQuantity > 0) {
-            $discount = ($cheapestPrice * $cheapestQuantity) * self::DISCOUNT_PERCENTAGE_MULTIPLIER;
+            $discount = floatval(($cheapestPrice * $cheapestQuantity) * self::DISCOUNT_PERCENTAGE_MULTIPLIER);
         }
 
         return $discount;

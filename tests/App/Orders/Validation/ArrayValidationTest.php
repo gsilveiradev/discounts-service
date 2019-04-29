@@ -2,7 +2,9 @@
 
 namespace DiscountsService\App\Orders\Validation;
 
-class ArrayValidationTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayValidationTest extends TestCase
 {
     protected $arrayValidation;
     protected $invalidOrder;
